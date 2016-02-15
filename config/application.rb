@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Microposts
   class Application < Rails::Application
+      
    config.generators do |g|
       g.stylesheets false
       g.javascripts false

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :check_user, only: [:edit, :update]
   
   def show # 追加
    @user = User.find(params[:id])
@@ -21,11 +22,14 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.new(user_params)
   end
   
   def update
-    @user = User.new(user_params)
+    if @user.update(user_params)
+      # TODO: 
+    else
+      # TODO:
+    end
   end
 
 
@@ -33,10 +37,10 @@ class UsersController < ApplicationController
   
   def set_user
     @user = User.find(params[:id])
-    redirect_to root_path 
-    
-    unless(current_user == @user)
   end
+  
+  def check_user
+    redirect_to root_url if (current_user != @user)
   end
 
   def user_params

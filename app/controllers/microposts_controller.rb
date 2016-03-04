@@ -11,12 +11,6 @@ class MicropostsController < ApplicationController
     end
   end
   
-  private
-  def micropost_params
-    params.require(:micropost).permit(:content)
-  end
-
-
   def destroy
     @micropost = current_user.microposts.find_by(id: params[:id])
     return redirect_to root_url if @micropost.nil?
@@ -24,5 +18,11 @@ class MicropostsController < ApplicationController
     flash[:success] = "Micropost deleted"
     redirect_to request.referrer || root_url
   end
+  
+  private
+  def micropost_params
+    params.require(:micropost).permit(:content)
+  end
+
   
 end

@@ -26,9 +26,10 @@ class UsersController < ApplicationController
   
   def update
     if @user.update(user_params)
-      # TODO: 
+      flash[:success] = "The user is updated successfully."
+      redirect_to @user
     else
-      # TODO:
+      render 'edit'
     end
   end
 
